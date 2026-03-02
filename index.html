@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <title>Honor His Memory with Dignity Memorial — תורת אברהם</title>
+    <meta name="description" content="Light virtual candles, share heartfelt messages, and celebrate Avraham Yosef Tamam z&quot;l with friends &amp; family. Join our community in preserving his legacy.">
+    <meta name="keywords" content="dignity memorial website, best online memorial websites 2022, virtual memorial candles, תורת אברהם, online tribute page">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512x512.png">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+    <!-- Zappy Analytics -->
+<script>
+(function() {
+  'use strict';
+  
+  // Configuration
+  var config = {
+    websiteId: 'c84b8b05-cfee-44c8-afae-1136bbee0e35',
+    apiUrl: 'https://api.zappy5.com/api/analytics/track',
+    sessionDuration: 30 * 60 * 1000, // 30 minutes
+    visitorDuration: 30 * 24 * 60 * 60 * 1000, // 30 days
+    trackPageViews: true,
+    trackClicks: true,
+    trackFormSubmissions: true
+  };
+  
+  // Generate or retrieve persistent visitor ID (30 days)
+  function getVisitorId() {
+    var visitorKey = 'zappy_visitor_' + config.websiteId;
+    var visitor = null;
+    
+    try {
+      visitor = localStorage.getItem(visitorKey);
+      if (visitor) {
+        var visitorData = JSON.parse(visitor);
+        var now = Date.now();
+        
+        // Check if visitor ID is still valid (30 days)
+        if (now - visitorData.created < config.visitorDuration) {
+          // Update last seen timestamp
+          visitorData.lastSeen = now;
+          localStorage.setItem(visitorKey, JSON.stringify(visitorData));
+          return visitorData.id;
+        }
+      }
+    } catch (e) {
+      console.warn('Zappy Analytics: LocalStorage not available');
+    }
+    
+    // Generate new visitor ID
+    var newVisitorId = 'zv_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    
+    try {
+      localStorage.setItem(visitorKey, JSON.stringify({
+        id: newVisitorId,
+        created: Date.now(),
+        lastSeen: Date.now()
+      }));
+    } catch (e) {
+      // Continue without local storage
+    }
+    
+    return newVisitorId;
+  }
+  
+  // Generate or retrieve session ID (30 minutes)
+  function getSessionId() {
+    var sessionKey = 'zappy_session_' + config.websiteId;
+    var session = null;
+    
+    try {
+      session = sessionStorage.getItem(sessionKey);
+      if (session) {
+        var sessionData = JSON.parse(session);
+        var now = Date.now();
+        
+        // Check if session is still valid
+        if (now - sessionData.timestamp < config.sessionDuration) {
+          // Update timestamp
+          sessionData.timestamp = now;
+          sessionStorage.setItem(sessionKey, JSON.stringify(sessionData));
+          return sessionData.id;
+        }
+      }
+    } catch (e) {
+      console.warn('Zappy Analytics: SessionStorage not available');
+    }
+    
+    // Generate new session ID
+    var newSessionId = 'zs_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    
+    try {
+      sessionStorage.setItem(sessionKey, JSON.stringify({
+        id: newSessionId,
+        timestamp: Date.now()
+      }));
+    } catch (e) {
+      // Continue without session storage
+    }
+    
+    return newSessionId;
+  }
+  
+  var visitorId = getVisitorId();
+  var sessionId = getSessionId();
+  
+  // Track an event
+  function trackEvent(eventType, data) {
+    data = data || {};
+    
+    var eventData = {
+      website_id: config.websiteId,
+      event_type: eventType,
+      page_path: window.location.pathname,
+      referrer: document.referrer || 'direct',
+      visitor_id: visitorId,
+      session_id: sessionId,
+      metadata: data
+    };
+    
+    // Use sendBeacon if available (better for page unload events)
+    if (navigator.sendBeacon) {
+      var blob = new Blob([JSON.stringify(eventData)], { type: 'application/json' });
+      navigator.sendBeacon(config.apiUrl, blob);
+    } else {
+      // Fallback to fetch
+      fetch(config.apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(eventData),
+        keepalive: true
+      }).catch(function(error) {
+        console.warn('Zappy Analytics: Failed to track event', error);
+      });
+    }
+  }
+  
+  // Track page view
+  if (config.trackPageViews) {
+    trackEvent('pageview', {
+      title: document.title,
+      url: window.location.href
+    });
+  }
+  
+  // Track clicks on important elements
+  if (config.trackClicks) {
+    document.addEventListener('click', function(e) {
+      var target = e.target;
+      
+      // Track button clicks (counted as actions)
+      if (target.tagName === 'BUTTON' || target.closest('button')) {
+        var button = target.tagName === 'BUTTON' ? target : target.closest('button');
+        trackEvent('click', {
+          element: 'button',
+          text: button.textContent.trim().substring(0, 100),
+          id: button.id || null,
+          class: button.className || null
+        });
+      }
+      
+      // Track link clicks (navigation - not counted as actions)
+      else if (target.tagName === 'A' || target.closest('a')) {
+        var link = target.tagName === 'A' ? target : target.closest('a');
+        trackEvent('navigation', {
+          element: 'link',
+          text: link.textContent.trim().substring(0, 100),
+          href: link.href,
+          external: link.hostname !== window.location.hostname
+        });
+      }
+    }, true);
+  }
+  
+  // Track form submissions
+  if (config.trackFormSubmissions) {
+    document.addEventListener('submit', function(e) {
+      var form = e.target;
+      
+      trackEvent('form_submit', {
+        form_id: form.id || null,
+        form_name: form.name || null,
+        form_action: form.action || null,
+        form_method: form.method || 'GET'
+      });
+    }, true);
+  }
+  
+  // Track time on page (send on page unload)
+  var pageLoadTime = Date.now();
+  
+  window.addEventListener('beforeunload', function() {
+    var timeOnPage = Math.floor((Date.now() - pageLoadTime) / 1000); // in seconds
+    
+    trackEvent('page_unload', {
+      time_on_page: timeOnPage,
+      page_path: window.location.pathname
+    });
+  });
+  
+  // Expose tracking function globally for custom events
+  window.zappyAnalytics = {
+    track: trackEvent,
+    getVisitorId: function() { return visitorId; },
+    getSessionId: function() { return sessionId; }
+  };
+  
+})();
+</script>
+<!-- End Zappy Analytics -->
+    <meta property="og:title" content="Honor His Memory with Dignity Memorial — תורת אברהם">
+  <meta property="og:description" content="Light virtual candles, share heartfelt messages, and celebrate Avraham Yosef Tamam z&quot;l with friends &amp; family. Join our community in preserving his legacy.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Honor His Memory with Dignity Memorial — תורת אברהם">
+  <meta name="twitter:description" content="Light virtual candles, share heartfelt messages, and celebrate Avraham Yosef Tamam z&quot;l with friends &amp; family. Join our community in preserving his legacy.">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512x512.png">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+    <!-- Cookie Consent -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.css">
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.umd.js"></script>
+    <!-- Mickidum Accessibility Toolbar -->
+    <script src="https://cdn.jsdelivr.net/gh/mickidum/acc_toolbar/acctoolbar/acctoolbar.min.js"></script>
+    <link rel="stylesheet" href="/styles.css">
+
+    <style id="zappy-dropdown-submenu-styles">
+      /* ========== DESKTOP DROPDOWN SUBMENU STYLES ========== */
+      /* Base styles for dropdown submenus - parent must be positioned */
+      .nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu) { position: relative; }
+      /* Submenu base - hidden by default */
+      .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu { display: block !important; position: absolute !important; top: 100%; left: 0; min-width: 220px; background: white; border-radius: 8px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); padding: 8px 0; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; z-index: 1000; list-style: none; pointer-events: none; }
+      /* CRITICAL: Desktop hover styles to show dropdown */
+      .nav-menu li:hover > .sub-menu, nav li:hover > .sub-menu, .navbar li:hover > .sub-menu, #navMenu li:hover > .sub-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }
+      /* Submenu item styling */
+      .sub-menu li { list-style: none; margin: 0; padding: 0; }
+      .sub-menu a { display: block !important; padding: 10px 16px !important; color: #333 !important; font-weight: 500; text-decoration: none; white-space: nowrap; transition: background-color 0.2s; }
+      .sub-menu a:hover { background-color: #f5f5f5; }
+      /* RTL (Hebrew/Arabic) dropdown positioning */
+      [dir="rtl"] .nav-menu .sub-menu, [dir="rtl"] nav .sub-menu, [dir="rtl"] .navbar .sub-menu, html[lang="he"] .nav-menu .sub-menu, html[lang="he"] nav .sub-menu, html[lang="he"] .navbar .sub-menu, html[lang="ar"] .nav-menu .sub-menu, html[lang="ar"] nav .sub-menu, html[lang="ar"] .navbar .sub-menu { left: auto !important; right: 0 !important; }
+      /* Hide empty dropdown menus */
+      .sub-menu:empty, .sub-menu:not(:has(li:not(.zappy-hidden-menu-item))), .sub-menu:not(:has(li)) { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
+      /* Desktop: show submenu on Menu Group hover */
+      li:has(.menu-group-title):hover > .sub-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }
+      /* Menu Group title styling */
+      .nav-menu > li > .menu-group-title, #navMenu > li > .menu-group-title { display: inline-block; padding: 0.5rem 1rem; cursor: default; user-select: none; }
+      
+      /* ========== MOBILE SUBMENU STYLES ========== */
+      @media (max-width: 768px) {
+        .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu { position: static !important; transform: none !important; box-shadow: none !important; background: transparent !important; max-height: 0; overflow: hidden; opacity: 0; visibility: hidden; transition: max-height 0.3s ease, opacity 0.3s ease; padding: 0 !important; border-radius: 0 !important; }
+        .sub-menu.mobile-expanded { max-height: 500px !important; opacity: 1 !important; visibility: visible !important; padding: 8px 0 8px 16px !important; }
+        [dir="rtl"] .sub-menu.mobile-expanded, html[lang="he"] .sub-menu.mobile-expanded { padding: 8px 16px 8px 0 !important; }
+        /* Disable hover behavior on mobile */
+        .nav-menu li:hover > .sub-menu, nav li:hover > .sub-menu, .navbar li:hover > .sub-menu, #navMenu li:hover > .sub-menu { opacity: 0; visibility: hidden; pointer-events: none; }
+        .nav-menu li > .sub-menu.mobile-expanded, nav li > .sub-menu.mobile-expanded, .navbar li > .sub-menu.mobile-expanded, #navMenu li > .sub-menu.mobile-expanded { opacity: 1 !important; visibility: visible !important; pointer-events: auto !important; }
+        .nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu) { display: flex !important; flex-wrap: wrap !important; align-items: center !important; position: relative !important; min-height: 44px !important; }
+        .nav-menu li:has(.sub-menu) > a, nav li:has(.sub-menu) > a, .navbar li:has(.sub-menu) > a, #navMenu li:has(.sub-menu) > a { flex: 1 !important; min-width: 0 !important; }
+        .nav-menu li:has(.sub-menu) > .menu-group-title, nav li:has(.sub-menu) > .menu-group-title, .navbar li:has(.sub-menu) > .menu-group-title, #navMenu li:has(.sub-menu) > .menu-group-title { flex: 1 !important; min-width: 0 !important; padding: 0 !important; line-height: inherit !important; }
+        .nav-menu li:has(.sub-menu) > .sub-menu, nav li:has(.sub-menu) > .sub-menu, .navbar li:has(.sub-menu) > .sub-menu, #navMenu li:has(.sub-menu) > .sub-menu { flex-basis: 100% !important; width: 100% !important; }
+        .nav-menu li:has(.sub-menu) > a [class*="chevron"], .nav-menu li:has(.sub-menu) > a [class*="arrow"], .nav-menu li:has(.sub-menu) > a .fa-chevron-down, .nav-menu li:has(.sub-menu) > a .fa-angle-down, nav li:has(.sub-menu) > a [class*="chevron"], nav li:has(.sub-menu) > a [class*="arrow"], #navMenu li:has(.sub-menu) > a [class*="chevron"], #navMenu li:has(.sub-menu) > a [class*="arrow"] { display: none !important; visibility: hidden !important; }
+        .mobile-submenu-toggle { display: flex !important; align-items: center !important; justify-content: center !important; width: 44px !important; height: auto !important; background: transparent !important; border: none !important; cursor: pointer !important; color: var(--text-dark) !important; position: static !important; flex-shrink: 0 !important; align-self: stretch !important; z-index: 2 !important; padding: 0 !important; margin: 0 !important; }
+        .mobile-submenu-toggle::after { content: '' !important; width: 0 !important; height: 0 !important; border-left: 6px solid transparent !important; border-right: 6px solid transparent !important; border-top: 7px solid currentColor !important; transition: transform 0.3s ease !important; }
+        .mobile-submenu-toggle.expanded::after { transform: rotate(180deg) !important; }
+        .sub-menu a { padding: 10px 0 !important; display: block !important; color: var(--text-dark) !important; }
+        .navbar .sub-menu li a, nav.navbar .sub-menu li a, .zappy-products-dropdown .sub-menu a { color: var(--text-dark) !important; }
+      }
+      @media (min-width: 769px) { .mobile-submenu-toggle { display: none !important; } }
+    </style>
+
+    <style id="zappy-widget-visibility">
+      #mic-access-tool-general-button, .mic-access-tool-general-button,
+      #mic-init-access-tool .mic-access-tool-general-button, #mic-init-access-tool #mic-access-tool-general-button,
+      ._access-icon, #mic-access-tool-box, .mic-access-tool-box,
+      #mic-init-access-tool #mic-access-tool-box, div[id*="mic-access-tool-box"], ._access-menu {
+        display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important;
+      }
+    </style>
+</head>
+<body>
+
+  <nav class="navbar">
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+    <svg class="hamburger-icon" width="24" height="24" viewbox="0 0 24 24" fill="none">
+      <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+    </svg>
+    <svg class="close-icon" width="24" height="24" viewbox="0 0 24 24" fill="none" style="display:none;">
+      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+    </svg>
+  </button>
+  
+  <button class="phone-header-btn" aria-label="Call">
+    <svg width="20" height="20" viewbox="0 0 24 24" fill="currentColor">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+    </svg>
+  </button>
+  
+  <div class="nav-container">
+    <div class="nav-brand">
+      <a href="/" class="logo-link">
+        <img src="/assets/memorial-tribute-logo.webp" alt="תורת אברהם" class="logo">
+      </a>
+    </div>
+    
+    <ul class="nav-menu" id="navMenu"><li><a href="/about">About</a></li><li><a href="/messages">Messages</a></li></ul>
+    
+    <div class="nav-cta-container">
+      <a href="/contact" class="nav-cta-btn">Contact</a>
+    </div>
+  </div>
+</nav>
+  
+  <main>
+    <section class="home-hero-section" data-layout-spec="Home-hero" data-hero-type="fullscreen-scrim">
+  <div class="home-hero-section__bg-wrapper">
+    <img data-hero-bg="true" data-placeholder="home-hero-candle-bg" data-context="A single burning candle flame in a dark, serene environment with subtle film grain texture. The flame should be warm and glowing, casting soft light in complete darkness. Cinematic, contemplative mood with deep blacks and warm golden flame light. High contrast, intimate close-up of the candle flame against pure black background. Photographic quality with slight grain for emotional depth." data-preserve-bg="0" class="home-hero-section__bg-image" width="1920" height="1080" src="/assets/site-home-hero-candle-bg.webp" alt="Memorial candle flame in darkness">
+    <div class="home-hero-section__scrim" aria-hidden="true"></div>
+  </div>
+  
+  <div class="home-hero-section__content-wrapper">
+    <div class="home-hero-section__content">
+      <h1 class="home-hero-section__title">תורת אברהם</h1>
+      <h3 class="home-hero-section__subtitle">לזכרו של אברהם יוסף תמם ז״ל</h3>
+      <div class="home-hero-section__cta-row">
+        <a href="/contact" class="home-hero-section__btn home-hero-section__btn--primary">Contact</a>
+        <a href="/about" class="home-hero-section__btn home-hero-section__btn--secondary">Learn More</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="home-hero-section__divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewbox="0 0 1200 120" preserveaspectratio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="home-hero-divider-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:rgba(7,10,15,0);stop-opacity:1"></stop>
+          <stop offset="45%" style="stop-color:rgba(7,10,15,0.75);stop-opacity:1"></stop>
+          <stop offset="55%" style="stop-color:rgba(7,10,15,0.75);stop-opacity:1"></stop>
+          <stop offset="100%" style="stop-color:rgba(7,10,15,0);stop-opacity:1"></stop>
+        </linearGradient>
+      </defs>
+      <path d="M0,120 L0,60 L1200,40 L1200,120 Z" fill="var(--bg-light)"></path>
+      <line x1="0" y1="60" x2="1200" y2="40" stroke="rgba(24,198,208,0.45)" stroke-width="1.5"></line>
+    </svg>
+  </div>
+</section>
+
+<section class="home-features-section" data-layout-spec="Home-features">
+  <div class="home-features-container">
+    <div class="home-features-header">
+      <h2>A quiet three-step ritual</h2>
+      <p>Join our community in honoring Avraham's memory through meaningful actions that bring comfort and connection.</p>
+    </div>
+    
+    <div class="home-features-grid">
+      <article class="home-features-card">
+        <div class="home-features-card-title">
+          <svg data-element-type="icon" data-icon-type="svg" class="home-features-icon" width="28" height="28" viewbox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 2L13.2 4.8C12.8 6.4 12.6 7.2 12.6 8C12.6 10.2 14.4 12 16.6 12C17.4 12 18.2 11.8 18.8 11.4L21.6 9.6C22.4 9.2 23.2 9 24 9C26.2 9 28 10.8 28 13C28 15.2 26.2 17 24 17C23.2 17 22.4 16.8 21.6 16.4L18.8 14.6C18.2 14.2 17.4 14 16.6 14C14.4 14 12.6 15.8 12.6 18C12.6 18.8 12.8 19.6 13.2 20.2L14 23" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M14 23C14 25.2 12.2 27 10 27C7.8 27 6 25.2 6 23C6 20.8 7.8 19 10 19C12.2 19 14 20.8 14 23Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          <h3>Light a candle (symbolic)</h3>
+        </div>
+        <p>Light a virtual candle in Avraham's memory. Each flame represents a moment of remembrance, creating a warm glow of collective tribute that honors his legacy.</p>
+      </article>
+      
+      <article class="home-features-card">
+        <div class="home-features-card-title">
+          <svg data-element-type="icon" data-icon-type="svg" class="home-features-icon" width="28" height="28" viewbox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4H24C25.1 4 26 4.9 26 6V22C26 23.1 25.1 24 24 24H4C2.9 24 2 23.1 2 22V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M26 8L14 16L2 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          <h3>Write a remembrance message</h3>
+        </div>
+        <p>Share your cherished memories, stories, and reflections. Your words become part of a living tribute, preserving Avraham's spirit and the impact he had on those around him.</p>
+      </article>
+      
+      <article class="home-features-card">
+        <div class="home-features-card-title">
+          <svg data-element-type="icon" data-icon-type="svg" class="home-features-icon home-features-icon-gold" width="28" height="28" viewbox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 2L17.09 11.26L26 14L17.09 16.74L14 26L10.91 16.74L2 14L10.91 11.26L14 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M22 6L23.5 9.5L27 11L23.5 12.5L22 16L20.5 12.5L17 11L20.5 9.5L22 6Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          <h3>Share a merit commitment (conceptual)</h3>
+        </div>
+        <p>Commit to a good deed or mitzvah in Avraham's honor. These acts of kindness elevate his memory and bring blessing to the world, creating ripples of positive change.</p>
+      </article>
+    </div>
+  </div>
+  
+  <div class="home-features-divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewbox="0 0 1200 60" preserveaspectratio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="home-features-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:rgba(255,184,74,0.85);stop-opacity:1"></stop>
+          <stop offset="65%" style="stop-color:rgba(255,184,74,0.45);stop-opacity:1"></stop>
+          <stop offset="100%" style="stop-color:rgba(255,184,74,0);stop-"></stop>
+        </linearGradient>
+      </defs>
+      <rect x="0" y="28" width="1200" height="2" fill="url(#home-features-gradient)"></rect>
+      <circle cx="850" cy="29" r="1.8" fill="rgba(255,184,74,0.65)"></circle>
+      <circle cx="920" cy="29" r="1.4" fill="rgba(255,184,74,0.45)"></circle>
+      <circle cx="980" cy="29" r="1.0" fill="rgba(255,184,74,0.30)"></circle>
+      <circle cx="1030" cy="29" r="0.8" fill="rgba(255,184,74,0.20)"></circle>
+      <circle cx="1070" cy="29" r="0.6" fill="rgba(255,184,74,0.12)"></circle>
+    </svg>
+  </div>
+</section>
+
+<section class="home-gallery-section" data-layout-spec="Home-Gallery">
+  <div class="home-gallery-container">
+    <div class="home-gallery-header">
+      <h2>Messages of remembrance</h2>
+      <p class="home-gallery-intro">Read heartfelt messages and reflections from our community as we honor Avraham Yosef Tamam z"l. Each message is a testament to the profound impact he had on our lives.</p>
+    </div>
+
+    <div class="home-gallery-grid">
+      <article class="home-gallery-card">
+        <h3>A light in our lives</h3>
+        <p>His wisdom and kindness touched everyone he met. We remember his gentle smile and the way he always made time to listen, truly listen, to those around him.</p>
+      </article>
+
+      <article class="home-gallery-card home-gallery-card-accent">
+        <h3>Teaching through example</h3>
+        <p>He taught us not through words alone, but through his actions. His dedication to learning and helping others inspired generations to follow in his footsteps.</p>
+      </article>
+
+      <article class="home-gallery-card">
+        <h3>Forever in our hearts</h3>
+        <p>The warmth of his presence remains with us. His lessons continue to guide us, and his memory brings comfort during difficult times.</p>
+      </article>
+
+      <article class="home-gallery-card">
+        <h3>A legacy of compassion</h3>
+        <p>His acts of chesed were countless and selfless. He showed us what it means to truly care for others, always putting their needs before his own.</p>
+      </article>
+
+      <article class="home-gallery-card home-gallery-card-accent">
+        <h3>Strength and faith</h3>
+        <p>Through challenges and triumphs, his unwavering faith was an anchor for our community. He taught us resilience and the power of trust in Hashem.</p>
+      </article>
+
+      <article class="home-gallery-card">
+        <h3>Cherished memories</h3>
+        <p>Every Shabbat table, every holiday celebration, every moment shared—these memories are treasures we hold close. His joy was contagious and his love boundless.</p>
+      </article>
+
+      <article class="home-gallery-card">
+        <h3>A devoted teacher</h3>
+        <p>His patience in teaching Torah was remarkable. He made complex ideas accessible and ignited a love of learning in all who studied with him.</p>
+      </article>
+
+      <article class="home-gallery-card">
+        <h3>Building bridges</h3>
+        <p>He brought people together, bridging differences with understanding and respect. His home was always open, his heart always welcoming.</p>
+      </article>
+
+      <article class="home-gallery-card">
+        <h3>Endless gratitude</h3>
+        <p>We are forever grateful for the time we had with him. His influence shaped our paths and his memory continues to inspire us to be better people.</p>
+      </article>
+
+      <article class="home-gallery-card">
+        <h3>A beautiful soul</h3>
+        <p>His neshama shone brightly in this world. The beauty of his character and the depth of his spirituality left an indelible mark on all who knew him.</p>
+      </article>
+
+      <div class="home-gallery-photo-tile">
+        <img data-placeholder="home-gallery-image-1" data-context="Extreme close-up macro photography of a lit memorial candle flame, soft bokeh background with warm golden glow, peaceful and reverent atmosphere, shallow depth of field focusing on the dancing flame, dark background with subtle light reflections, memorial tribute aesthetic" width="600" height="800" src="/assets/site-home-gallery-image-1.webp" alt="Memorial candle flame close-up">
+      </div>
+    </div>
+  </div>
+
+  <div class="home-gallery-divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewbox="0 0 1200 80" preserveaspectratio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="gallery-torn-grain">
+          <feTurbulence type="fractalNoise" basefrequency="0.8" numoctaves="4" result="noise"></feTurbulence>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xchannelselector="R" ychannelselector="G"></feDisplacementMap>
+        </filter>
+      </defs>
+      <path d="M0,80 L0,45 Q30,42 60,48 T120,44 Q150,47 180,42 T240,46 Q270,43 300,49 T360,45 Q390,48 420,43 T480,47 Q510,44 540,50 T600,46 Q630,49 660,44 T720,48 Q750,45 780,51 T840,47 Q870,50 900,45 T960,49 Q990,46 1020,52 T1080,48 Q1110,51 1140,46 T1200,50 L1200,80 Z" fill="rgba(7,10,15,0.20)" filter="url(#gallery-torn-grain)"></path>
+    </svg>
+  </div>
+</section>
+
+<section class="home-testimonials-section" data-layout-spec="Home-testimonials">
+  <div class="testimonials-container">
+    <div class="testimonials-header">
+      <h2>What this space means to people</h2>
+      <p>A place where memories unite us in collective remembrance and honor.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-monogram" aria-hidden="true">
+          <span>א</span>
+        </div>
+        <div class="testimonial-content">
+          <h3>Sarah Cohen</h3>
+          <p>"This memorial website has given our family a beautiful way to keep Avraham's memory alive. Every candle lit, every message shared—it brings us together even when we're apart. A truly meaningful tribute."</p>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-monogram" aria-hidden="true">
+          <span>ב</span>
+        </div>
+        <div class="testimonial-content">
+          <h3>David Levi</h3>
+          <p>"The ability to share memories and light candles has been incredibly healing. This space honors Avraham's legacy with dignity and warmth, creating a lasting connection for all who knew him."</p>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-monogram" aria-hidden="true">
+          <span>ג</span>
+        </div>
+        <div class="testimonial-content">
+          <h3>Rachel Mizrahi</h3>
+          <p>"A sacred digital space that captures the essence of community remembrance. The thoughtful design and interactive elements make it easy to participate in honoring Avraham's memory together."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="testimonials-divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewbox="0 0 1200 100" preserveaspectratio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:rgba(24,198,208,0.35);stop-opacity:1"></stop>
+          <stop offset="100%" style="stop-color:rgba(12,17,26,1);stop-opacity:1"></stop>
+        </linearGradient>
+      </defs>
+      <path d="M0,100 L0,45 Q100,35 200,45 T400,45 Q500,35 600,45 T800,45 Q900,35 1000,45 T1200,45 L1200,100 Z" fill="#070A0F"></path>
+      <path d="M0,100 L0,42 Q100,32 200,42 T400,42 Q500,32 600,42 T800,42 Q900,32 1000,42 T1200,42 L1200,100 Z" fill="#070A0F"></path>
+    </svg>
+  </div>
+</section>
+
+<section class="home-cta-section" data-layout-spec="Home-cta">
+  <div class="home-cta-background">
+    <img data-placeholder="home-cta-background" data-context="Soft, ethereal bokeh background with warm candlelight glows and gentle light streaks, creating a peaceful memorial atmosphere with blurred golden and amber lights against a dark background" width="1920" height="800" src="/assets/site-home-cta-background.webp" alt="Soft candlelight bokeh background">
+  </div>
+  <div class="home-cta-overlay"></div>
+  <div class="home-cta-container">
+    <div class="home-cta-content">
+      <h2>Join the remembrance</h2>
+      <p>We invite you to connect with our community and contribute to preserving Avraham Yosef Tamam's memory. Share your stories, light a virtual candle, or simply be part of this collective act of remembrance.</p>
+      <div class="home-cta-actions">
+        <a href="/contact" class="home-cta-primary-btn">Contact</a>
+        <a href="/about" class="home-cta-secondary-link">Read the story</a>
+      </div>
+    </div>
+  </div>
+</section>
+  </main>
+  
+  <footer class="site-footer"><div class="footer-container"><div class="footer-top"><div class="footer-column footer-about"><img src="/assets/memorial-tribute-logo.webp" alt="תורת אברהם" class="logo"><p class="footer-tagline">Preserving memories, honoring legacies</p></div><div class="footer-column footer-links"><h3>Quick Links</h3><ul><li><a href="/about">About</a></li><li><a href="/messages">Messages</a></li><li><a href="/contact">Contact</a></li></ul></div><div class="footer-column footer-contact"><h3>Contact Us</h3><ul><li><i class="fas fa-envelope"></i><a href="mailto:[business_email]">[business_email]</a></li><li><i class="fas fa-phone"></i><a href="tel:[business_phone]">[business_phone]</a></li><li><a href="/"><i class="fas fa-map-marker-alt"></i><span>[business_address]</span></a></li></ul></div><div class="footer-column footer-social"><h3>Connect</h3><div class="social-links"><a href="[facebook_handle]" aria-label="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a><a href="[instagram_handle]" aria-label="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a><a href="[whatsapp_handle]" aria-label="WhatsApp" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a></div></div></div><div class="footer-bottom"><div class="footer-bottom-left"><p class="copyright">© 2026 תורת אברהם. All rights reserved.</p></div><div class="footer-bottom-right"><nav class="legal-links"><a href="/privacy">Privacy Policy</a><span class="separator">•</span><a href="/terms">Terms &amp; Conditions</a><span class="separator">•</span><a href="/accessibility">Accessibility</a></nav><a href="https://zappy5.com" target="_blank" class="zappy-attribution" rel="noopener">Generated by Zappy</a></div></div></div></footer>
+  
+  <a href="https://wa.me/[whatsapp_handle]" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  
+  <div data-integration="accessibility:toolbar"></div>
+
+    <script src="/script.js"></script>
+
+    <script id="zappy-mobile-submenu-script">
+    (function() {
+      function initMobileSubmenuToggles() {
+        if (window.innerWidth > 768) {
+          document.querySelectorAll('.mobile-submenu-toggle').forEach(function(btn) { btn.remove(); });
+          document.querySelectorAll('.sub-menu.mobile-expanded').forEach(function(menu) { menu.classList.remove('mobile-expanded'); });
+          return;
+        }
+        var items = document.querySelectorAll('.nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu)');
+        items.forEach(function(li) {
+          if (li.querySelector('.mobile-submenu-toggle')) return;
+          var submenu = li.querySelector('.sub-menu');
+          var parentLink = li.querySelector(':scope > a');
+          if (!submenu || !parentLink) return;
+          var toggleBtn = document.createElement('button');
+          toggleBtn.className = 'mobile-submenu-toggle';
+          toggleBtn.setAttribute('aria-label', 'Toggle submenu');
+          toggleBtn.setAttribute('type', 'button');
+          parentLink.insertAdjacentElement('afterend', toggleBtn);
+          toggleBtn.addEventListener('click', function(e) {
+            e.preventDefault(); e.stopPropagation();
+            document.querySelectorAll('.sub-menu.mobile-expanded').forEach(function(menu) {
+              if (menu !== submenu) { menu.classList.remove('mobile-expanded'); var t = menu.parentElement.querySelector('.mobile-submenu-toggle'); if(t) t.classList.remove('expanded'); }
+            });
+            submenu.classList.toggle('mobile-expanded');
+            toggleBtn.classList.toggle('expanded');
+          });
+        });
+      }
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', initMobileSubmenuToggles); }
+      else { initMobileSubmenuToggles(); }
+      var resizeTimer; window.addEventListener('resize', function() { clearTimeout(resizeTimer); resizeTimer = setTimeout(initMobileSubmenuToggles, 250); });
+      // Re-initialize when mobile menu becomes visible (MutationObserver)
+      var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'attributes') {
+            var target = mutation.target;
+            if (target.classList && (target.classList.contains('active') || target.classList.contains('open'))) {
+              setTimeout(initMobileSubmenuToggles, 100);
+            }
+          }
+        });
+      });
+      setTimeout(function() {
+        document.querySelectorAll('.mobile-menu, .nav-menu, #navMenu, nav').forEach(function(menu) {
+          observer.observe(menu, { attributes: true, attributeFilter: ['class', 'style'] });
+        });
+      }, 500);
+    })();
+    </script>
+
+    <script id="zappy-navbar-scroll-effect">
+    (function(){var nb=document.querySelector('nav.navbar,.navbar:not(.zappy-catalog-menu)');var cm=document.querySelector('.zappy-catalog-menu');if(!nb)return;var fb='rgba(15,17,21,0.85)';var th=60;nb.style.transition='background 0.3s ease,backdrop-filter 0.3s ease,-webkit-backdrop-filter 0.3s ease,box-shadow 0.3s ease';if(cm)cm.style.transition='background 0.3s ease,backdrop-filter 0.3s ease,-webkit-backdrop-filter 0.3s ease';function onS(){var y=window.scrollY||window.pageYOffset;if(y>th){nb.style.background=fb;nb.style.backdropFilter='blur(12px)';nb.style.webkitBackdropFilter='blur(12px)';nb.style.boxShadow='0 2px 16px rgba(0,0,0,0.12)';if(cm){cm.style.background=fb;cm.style.backdropFilter='blur(12px)';cm.style.webkitBackdropFilter='blur(12px)';}}else{nb.style.background='transparent';nb.style.backdropFilter='none';nb.style.webkitBackdropFilter='none';nb.style.boxShadow='none';if(cm){cm.style.background='transparent';cm.style.backdropFilter='none';cm.style.webkitBackdropFilter='none';}}}window.addEventListener('scroll',onS,{passive:true});onS();})();
+    </script>
+</body>
+</html>

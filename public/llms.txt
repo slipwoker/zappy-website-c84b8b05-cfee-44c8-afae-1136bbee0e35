@@ -1,0 +1,47 @@
+# Business — Generative Engine Optimization Map
+
+---
+
+## Pages
+
+### Home
+https://example.com
+Light virtual candles, share heartfelt messages, and celebrate Avraham Yosef Tamam z&quot;l with friends &amp; family. Join our community in preserving his legacy.
+
+### About
+https://example.com/about
+Discover the inspiring story of Avraham Yosef Tamam z&quot;l and how his teachings continue to touch lives. Learn about his legacy and lasting impact on our community.
+
+### Messages
+https://example.com/messages
+Read touching tributes from friends &amp; family and add your own message of remembrance. Connect with others who cherish the memory of Avraham Yosef Tamam z&quot;l.
+
+### Contact
+https://example.com/contact
+Have questions or want to contribute to this dignity memorial website? Reach out to our family and join us in honoring Avraham Yosef Tamam z&quot;l together.
+
+## Legal & Policy
+
+### Privacy Policy
+https://example.com/privacy
+Information about how user data is collected, stored, and protected.
+
+### Terms & Conditions
+https://example.com/terms
+Legal terms describing service usage, rights, and policies.
+
+### Accessibility Statement
+https://example.com/accessibility
+Information about WCAG compliance and accessibility features.
+
+---
+
+# Business Context (for LLM understanding)
+
+## About Business
+---
+
+# Additional Resources
+
+- **Sitemap**: https://example.com/sitemap.xml
+- **Robots.txt**: https://example.com/robots.txt
